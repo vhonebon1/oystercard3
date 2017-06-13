@@ -13,7 +13,7 @@ describe Oystercard do
 
     it 'doesn\'t allow to top up beyond the limit' do
       oystercard = Oystercard.new(20)
-      expect { oystercard.top_up(80) }.to raise_error("Exceeded #{Oystercard::MAX_LIMIT} limit")
+      expect { oystercard.top_up(80) }.to raise_error("Exceeded #{Oystercard::MAX_LIMIT} pound limit")
     end
   end
 end
