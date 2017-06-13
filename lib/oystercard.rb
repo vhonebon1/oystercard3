@@ -1,15 +1,12 @@
-# lib/oystercard.rb
 class Oystercard
   attr_reader :balance, :status, :minimum_balance
   DEFAULT_BALANCE = 0
   MAX_LIMIT = 90
   MIN_BALANCE = 1
 
-  def initialize(balance = DEFAULT_BALANCE, max_limit = MAX_LIMIT, min_balance = MIN_BALANCE, status = :not_in_use)
+  def initialize(balance = DEFAULT_BALANCE, status = :not_in_use)
     @status = status
     @balance = balance
-    @max_limit = max_limit
-    @min_balance = min_balance
   end
 
   def top_up(money)
@@ -37,10 +34,10 @@ class Oystercard
 private
 
   def limit_reached?(money)
-    @balance + money > @max_limit
+    @balance + money > MAX_LIMIT
   end
 
   def has_min_balance?
-    @balance >= @min_balance
+    @balance >= MIN_BALANCE
   end
 end
