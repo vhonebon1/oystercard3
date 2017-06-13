@@ -9,6 +9,14 @@ describe Oystercard do
     it 'starts with a default balance' do
       expect(subject.balance).to eq 0
     end
+
+    it 'starts with an entry station set to nil' do
+      expect(subject.entry_station).to eq nil
+    end
+
+    it 'starts with an empty journey history' do
+      expect(subject.journeys).to be_empty
+    end
   end
 
   describe '#top_up' do
@@ -46,6 +54,7 @@ describe Oystercard do
 
   describe '#touch_out' do
     let(:station) { double :station }
+    let(:exit_station) { double :exit_station }
 
     it 'can be touched out' do
       expect(subject).to respond_to :touch_out
@@ -53,13 +62,19 @@ describe Oystercard do
 
     it 'deducts the fare from the card' do
       topped_up_card.touch_in(station)
-      expect{ topped_up_card.touch_out }.to change{ topped_up_card.balance }.by(-Oystercard::MIN_FARE)
+      expect{ topped_up_card.touch_out(exit_station) }.to change{ topped_up_card.balance }.by(-Oystercard::MIN_FARE)
     end
 
     it 'forgets the entry station' do
       topped_up_card.touch_in(station)
-      topped_up_card.touch_out
+      topped_up_card.touch_out(exit_station)
       expect(topped_up_card.entry_station).to eq nil
+    end
+
+    it 'takes the exit station' do
+      topped_up_card.touch_in(station)
+      topped_up_card.touch_out(exit_station)
+      expect(topped_up_card.exit_station).to eq exit_station
     end
   end
 end
