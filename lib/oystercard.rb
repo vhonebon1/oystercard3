@@ -1,8 +1,8 @@
 class Oystercard
-  attr_reader :balance, :status, :minimum_balance
+  attr_reader :balance, :status, :min_fare
   DEFAULT_BALANCE = 0
   MAX_LIMIT = 90
-  MIN_BALANCE = 1
+  MIN_FARE = 1
 
   def initialize(balance = DEFAULT_BALANCE, status = :not_in_use)
     @status = status
@@ -14,21 +14,18 @@ class Oystercard
     @balance += money
   end
 
-  def deduct(money)
-    @balance -= money
-  end
-
   def in_journey?
     @status == :in_use
   end
 
   def touch_in
-    raise "Card does not have the #{MIN_BALANCE} minimum balance, must top up first" unless has_min_balance?
+    raise "£#{MIN_FARE} balance required. Top up first" unless has_min_balance?
     @status = :in_use
   end
 
   def touch_out
     @status = :not_in_use
+    deduct(MIN_FARE)
   end
 
 private
@@ -38,6 +35,10 @@ private
   end
 
   def has_min_balance?
-    @balance >= MIN_BALANCE
+    @balance >= MIN_FARE
+  end
+
+  def deduct(min_fare)
+    @balance -= MIN_FARE
   end
 end

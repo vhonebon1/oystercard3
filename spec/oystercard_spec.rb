@@ -25,13 +25,6 @@ describe Oystercard do
     end
   end
 
-  describe '#deduct' do
-    it 'should deduct money from the balance' do
-      expect(topped_up_card.deduct(5)).to eq 5
-    end
-  end
-
-
   describe '#in_journey?' do
     it 'checks if the card is in use' do
       expect(subject).to_not be_in_journey
@@ -49,7 +42,7 @@ describe Oystercard do
     end
 
     it 'doesn\'t allow you to touch in without a minimum balance' do
-      expect{ subject.touch_in }.to raise_error("Card does not have the #{Oystercard::MIN_BALANCE} minimum balance, must top up first")
+      expect{ subject.touch_in }.to raise_error("£#{Oystercard::MIN_FARE} balance required. Top up first")
     end
   end
 
@@ -62,6 +55,11 @@ describe Oystercard do
       topped_up_card.touch_in
       topped_up_card.touch_out
       expect(topped_up_card.status).to eq :not_in_use
+    end
+
+    it 'deducts the fare from the card' do
+      topped_up_card.touch_in
+      expect{ topped_up_card.touch_out }.to change{ topped_up_card.balance }.by(-Oystercard::MIN_FARE)
     end
   end
 end
