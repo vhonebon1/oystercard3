@@ -29,17 +29,15 @@ describe Oystercard do
   end
 
   describe '#in_journey?' do
+    let(:station) { double :station }
     it 'checks if the card is in use' do
-      expect(subject).to_not be_in_journey
+      topped_up_card.touch_in(station)
+      expect(topped_up_card).to be_in_journey
     end
   end
 
   describe '#touch_in' do
     let(:station) { double :station }
-
-    it 'can be touched in' do
-      expect(topped_up_card).to respond_to :touch_in
-    end
 
     it 'doesn\'t allow you to touch in without a minimum balance' do
       expect { subject.touch_in(station) }.to raise_error("£#{Oystercard::MIN_FARE} balance required. Top up first")
