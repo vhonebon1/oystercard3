@@ -1,6 +1,5 @@
 require 'oystercard.rb'
 
-
 describe Oystercard do
 
   let(:topped_up_card) { described_class.new(10) }
@@ -43,7 +42,7 @@ describe Oystercard do
     end
 
     it 'doesn\'t allow you to touch in without a minimum balance' do
-      expect{ subject.touch_in(station) }.to raise_error("£#{Oystercard::MIN_FARE} balance required. Top up first")
+      expect { subject.touch_in(station) }.to raise_error("£#{Oystercard::MIN_FARE} balance required. Top up first")
     end
 
     it 'saves the entry station' do
@@ -62,7 +61,7 @@ describe Oystercard do
 
     it 'deducts the fare from the card' do
       topped_up_card.touch_in(station)
-      expect{ topped_up_card.touch_out(exit_station) }.to change{ topped_up_card.balance }.by(-Oystercard::MIN_FARE)
+      expect { topped_up_card.touch_out(exit_station) }.to change { topped_up_card.balance }.by(-Oystercard::MIN_FARE)
     end
 
     it 'forgets the entry station' do

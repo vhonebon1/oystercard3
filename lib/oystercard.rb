@@ -16,7 +16,7 @@ class Oystercard
   end
 
   def in_journey?
-    !!entry_station
+    @entry_station == entry_station
   end
 
   def touch_in(entry_station)
@@ -30,7 +30,7 @@ class Oystercard
     @exit_station = exit_station
   end
 
-private
+  private
 
   def limit_reached?(money)
     @balance + money > MAX_LIMIT
