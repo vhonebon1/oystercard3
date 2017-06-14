@@ -29,7 +29,7 @@ describe Oystercard do
   end
 
   describe '#in_journey?' do
-    it 'checks if the card is a journey' do
+    it 'checks if the card is in use' do
       expect(subject).to_not be_in_journey
     end
   end
@@ -46,8 +46,8 @@ describe Oystercard do
     end
 
     it 'saves the entry station' do
-      topped_up_card.touch_in(station)
-      expect(topped_up_card.entry_station).to eq station
+      topped_up_card.touch_in('London Bridge')
+      expect(topped_up_card.journeys[0][:entry_station]).to eq 'London Bridge'
     end
   end
 
@@ -70,10 +70,10 @@ describe Oystercard do
       expect(topped_up_card.entry_station).to eq nil
     end
 
-    it 'takes the exit station' do
-      topped_up_card.touch_in(station)
-      topped_up_card.touch_out(exit_station)
-      expect(topped_up_card.exit_station).to eq exit_station
+    it 'saves the exit station' do
+      topped_up_card.touch_in('London Bridge')
+      topped_up_card.touch_out('Bank')
+      expect(topped_up_card.journeys[0][:exit_station]).to eq 'Bank'
     end
   end
 end

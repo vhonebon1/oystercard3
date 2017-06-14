@@ -16,18 +16,20 @@ class Oystercard
   end
 
   def in_journey?
-    @entry_station == entry_station
+    @entry_station != nil
   end
 
   def touch_in(entry_station)
     raise "£#{MIN_FARE} balance required. Top up first" unless has_min_balance?
-    @entry_station = entry_station
+    @journey = {}
+    @journey[:entry_station] = entry_station
+    @journeys << @journey
   end
 
   def touch_out(exit_station)
     deduct(MIN_FARE)
     @entry_station = nil
-    @exit_station = exit_station
+    @journey[:exit_station] = exit_station
   end
 
   private
