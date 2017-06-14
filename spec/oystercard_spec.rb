@@ -1,16 +1,11 @@
 require 'oystercard.rb'
 
 describe Oystercard do
-
   let(:topped_up_card) { described_class.new(10) }
 
   describe '#initialize' do
     it 'starts with a default balance' do
       expect(subject.balance).to eq 0
-    end
-
-    it 'starts with an entry station set to nil' do
-      expect(subject.entry_station).to eq nil
     end
 
     it 'starts with an empty journey history' do
@@ -30,6 +25,7 @@ describe Oystercard do
 
   describe '#in_journey?' do
     let(:station) { double :station }
+
     it 'checks if the card is in use' do
       topped_up_card.touch_in(station)
       expect(topped_up_card).to be_in_journey
@@ -60,12 +56,6 @@ describe Oystercard do
     it 'deducts the fare from the card' do
       topped_up_card.touch_in(station)
       expect { topped_up_card.touch_out(exit_station) }.to change { topped_up_card.balance }.by(-Oystercard::MIN_FARE)
-    end
-
-    it 'forgets the entry station' do
-      topped_up_card.touch_in(station)
-      topped_up_card.touch_out(exit_station)
-      expect(topped_up_card.entry_station).to eq nil
     end
 
     it 'saves the exit station' do
