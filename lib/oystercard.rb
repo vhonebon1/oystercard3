@@ -1,12 +1,13 @@
+require './lib/journey.rb'
+
 class Oystercard
-  attr_reader :balance, :entry_station, :exit_station
+  attr_reader :balance
   DEFAULT_BALANCE = 0
   MAX_LIMIT = 90
   MIN_FARE = 1
 
   def initialize(balance = DEFAULT_BALANCE)
     @balance = balance
-
   end
 
   def top_up(money)
@@ -20,9 +21,8 @@ class Oystercard
 
   def touch_in(entry_station)
     raise "£#{MIN_FARE} balance required. Top up first" unless has_min_balance?
-
-    @journey[:entry_station] = entry_station
-    @journeys << @journey
+    journey = Journey.new
+    journey.start_journey(entry_station)
   end
 
   def touch_out(exit_station)

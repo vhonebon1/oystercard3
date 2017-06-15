@@ -4,7 +4,11 @@ require "oystercard"
 describe Journey do
   let(:trip) { described_class.new(entry_station = nil)}
   let(:card) { Oystercard.new(50) }
-  let(:station) { double :station }
+  let(:entry_station) do
+    entry_station = double "Mile End"
+    allow(entry_station).to receive(:name) { "Mile End" }
+    entry_station
+  end
 
   describe '#initialize' do
     it 'initializes the journey with an entry_station set to nil' do
@@ -20,12 +24,12 @@ describe Journey do
     end
   end
 
-  # describe '#start_journey' do
-  #   it 'it saves the entry_station' do
-  #     card.touch_in(station)
-  #     expect()
-  #   end
-  # end
+  describe '#start_journey' do
+    it 'saves the entry_station' do
+      trip.start_journey(entry_station)
+      expect(trip.journeys).to eq [{:entry_station => "Mile End"}]
+    end
+  end
 end
 
 

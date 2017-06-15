@@ -7,4 +7,8 @@ class Journey
     @journey = {}
   end
 
+  def start_journey(entry_station)
+    @journey[:entry_station] = entry_station.name
+    @journeys << @journey
+  end
 end
