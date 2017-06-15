@@ -11,4 +11,8 @@ class Journey
     @journey[:entry_station] = entry_station.name
     @journeys << @journey
   end
+
+  def finish_journey(exit_station)
+    @journey[:exit_station] = exit_station.name
+  end
 end

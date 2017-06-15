@@ -1,13 +1,19 @@
 {
   "RSpec": {
     "coverage": {
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/spec/journey_spec.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/spec/journey_spec.rb": [
         1,
         1,
         null,
         1,
-        5,
+        6,
         1,
+        1,
+        2,
+        4,
+        2,
+        null,
+        null,
         1,
         1,
         2,
@@ -35,6 +41,14 @@
         null,
         null,
         null,
+        1,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        null,
         null,
         null,
         null,
@@ -58,23 +72,27 @@
         null,
         null
       ],
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/lib/journey.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/lib/journey.rb": [
         1,
         1,
         null,
         1,
-        4,
-        4,
-        4,
+        5,
+        5,
+        5,
         null,
         null,
         1,
+        2,
+        2,
+        null,
+        null,
         1,
         1,
         null,
         null
       ],
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/lib/oystercard.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/lib/oystercard.rb": [
         1,
         null,
         1,
@@ -105,7 +123,6 @@
         1,
         0,
         0,
-        0,
         null,
         null,
         1,
@@ -123,7 +140,7 @@
         null,
         null
       ],
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/spec/oystercard_spec.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/spec/oystercard_spec.rb": [
         1,
         null,
         1,
@@ -179,7 +196,7 @@
         null,
         null
       ],
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/spec/station_spec.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/spec/station_spec.rb": [
         1,
         null,
         1,
@@ -197,7 +214,7 @@
         null,
         null
       ],
-      "/Users/user/Documents/Projects/week_2_challenges/oystercard3/lib/station.rb": [
+      "/Users/marysalemme/Desktop/Dev/week2/oystercard/lib/station.rb": [
         1,
         null,
         1,
@@ -210,6 +227,6 @@
         null
       ]
     },
-    "timestamp": 1497538060
+    "timestamp": 1497538909
   }
 }

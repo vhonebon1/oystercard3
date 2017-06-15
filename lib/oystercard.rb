@@ -21,14 +21,13 @@ class Oystercard
 
   def touch_in(entry_station)
     raise "£#{MIN_FARE} balance required. Top up first" unless has_min_balance?
-    journey = Journey.new
-    journey.start_journey(entry_station)
+    @journey = Journey.new
+    @journey.start_journey(entry_station)
   end
 
   def touch_out(exit_station)
     deduct(MIN_FARE)
-    @entry_station = nil
-    @journey[:exit_station] = exit_station
+    @journey.finish_journey(exit_station)
   end
 
   private

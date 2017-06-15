@@ -10,6 +10,12 @@ describe Journey do
     entry_station
   end
 
+  let(:exit_station) do
+    exit_station = double "London Bridge"
+    allow(exit_station).to receive(:name) { "London Bridge" }
+    exit_station
+  end
+
   describe '#initialize' do
     it 'initializes the journey with an entry_station set to nil' do
       expect(trip.entry_station).to eq nil
@@ -28,6 +34,14 @@ describe Journey do
     it 'saves the entry_station' do
       trip.start_journey(entry_station)
       expect(trip.journeys).to eq [{:entry_station => "Mile End"}]
+    end
+  end
+
+  describe '#finish_journey' do
+    it 'saves the exit_station' do
+      trip.start_journey(entry_station)
+      trip.finish_journey(exit_station)
+      expect(trip.journeys).to eq [{:entry_station => "Mile End", :exit_station => "London Bridge"}]
     end
   end
 end
