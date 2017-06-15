@@ -1,4 +1,5 @@
-require 'oystercard.rb'
+require 'oystercard'
+require 'journey'
 
 describe Oystercard do
 
@@ -39,16 +40,17 @@ describe Oystercard do
   end
 
   describe '#touch_out' do
-    let(:station) { double :station }
+    let(:entry_station) { double :entry_station }
     let(:exit_station) { double :exit_station }
+    let(:journey) { double :journey }
 
     it 'can be touched out' do
       expect(subject).to respond_to :touch_out
     end
 
-    # it 'deducts the fare from the card' do
-    #   topped_up_card.touch_in(station)
-    #   expect { topped_up_card.touch_out(exit_station) }.to change { topped_up_card.balance }.by(-Oystercard::MIN_FARE)
-    # end
+    it 'deducts the fare from the card' do
+
+      expect { topped_up_card.touch_out(exit_station) }.to change { topped_up_card.balance }.by(journey.fare)
+    end
   end
 end

@@ -44,6 +44,13 @@ describe Journey do
       expect(trip.journeys).to eq [{:entry_station => "Mile End", :exit_station => "London Bridge"}]
     end
   end
+
+  describe '#fare' do
+    it 'returns the penalty fare if the journey is incomplete' do
+      allow(entry_station).to receive(:name).and_return(nil)
+      expect(trip.fare).to eq 6
+    end
+  end
 end
 
 
@@ -54,16 +61,4 @@ end
     #   topped_up_card.touch_in(station)
     #   topped_up_card.touch_out(exit_station)
     #   expect(topped_up_card.entry_station).to eq nil
-    # end
-
-    #
-    # it 'saves the entry station' do
-    #   topped_up_card.touch_in('London Bridge')
-    #   expect(topped_up_card.journeys[0][:entry_station]).to eq 'London Bridge'
-    # end
-
-    # it 'saves the exit station' do
-    #   topped_up_card.touch_in('London Bridge')
-    #   topped_up_card.touch_out('Bank')
-    #   expect(topped_up_card.journeys[0][:exit_station]).to eq 'Bank'
     # end
