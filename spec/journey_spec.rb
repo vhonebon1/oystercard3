@@ -1,0 +1,51 @@
+require "journey"
+require "oystercard"
+
+describe Journey do
+  let(:trip) { described_class.new(entry_station = nil)}
+  let(:card) { Oystercard.new(50) }
+  let(:station) { double :station }
+
+  describe '#initialize' do
+    it 'initializes the journey with an entry_station set to nil' do
+      expect(trip.entry_station).to eq nil
+    end
+
+    it 'starts with an empty journey history' do
+      expect(trip.journeys).to eq []
+    end
+
+    it 'starts with an empty journey' do
+      expect(trip.journey).to be_empty
+    end
+  end
+
+  # describe '#start_journey' do
+  #   it 'it saves the entry_station' do
+  #     card.touch_in(station)
+  #     expect()
+  #   end
+  # end
+end
+
+
+
+
+    #
+    # it 'forgets the entry station' do
+    #   topped_up_card.touch_in(station)
+    #   topped_up_card.touch_out(exit_station)
+    #   expect(topped_up_card.entry_station).to eq nil
+    # end
+
+    #
+    # it 'saves the entry station' do
+    #   topped_up_card.touch_in('London Bridge')
+    #   expect(topped_up_card.journeys[0][:entry_station]).to eq 'London Bridge'
+    # end
+
+    # it 'saves the exit station' do
+    #   topped_up_card.touch_in('London Bridge')
+    #   topped_up_card.touch_out('Bank')
+    #   expect(topped_up_card.journeys[0][:exit_station]).to eq 'Bank'
+    # end
