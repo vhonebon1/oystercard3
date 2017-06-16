@@ -29,7 +29,7 @@ describe Journey do
     it 'saves the exit_station' do
       trip.start_journey(entry)
       trip.finish_journey(exit_stat)
-      expect(trip.journeys).to eq [{:entry_station => entry, :exit_station => exit_stat}]
+      expect(trip.journeys).to eq [{:exit_station => exit_stat}]
     end
   end
 

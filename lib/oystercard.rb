@@ -29,12 +29,12 @@ class Oystercard
 
   def touch_out(exit_station)
     if @hash == {}
-      new_journey
+      new_journey.finish_journey(exit_station)
+      deduct
+    else
       @journey.finish_journey(exit_station)
       deduct
     end
-      @journey.finish_journey(exit_station)
-      deduct
   end
 
   def new_journey
@@ -56,9 +56,11 @@ class Oystercard
   end
 end
 
-
-card = Oystercard.new(20)
-station1 = Station.new("Mile End", 1)
-station2 = Station.new("Stepney Green", 1)
+#
+# card = Oystercard.new(20)
+# station1 = Station.new("Mile End", 1)
+# station2 = Station.new("Stepney Green", 1)
 # card.touch_in(station1)
-card.touch_out(station2)
+# card.touch_out(station2)
+#
+# puts card.balance

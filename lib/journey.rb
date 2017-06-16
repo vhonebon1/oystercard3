@@ -1,8 +1,9 @@
 class Journey
-  attr_reader :entry_station, :journeys, :hash
+  attr_reader :entry_station, :journeys, :hash, :exit_station
 
   def initialize(entry_station = nil)
     @entry_station = entry_station
+    @exit_station = exit_station
     @journeys = []
     @hash = {}
   end
@@ -15,6 +16,7 @@ class Journey
 
   def finish_journey(exit_station)
     @hash[:exit_station] = exit_station
+    @journeys << @hash
   end
 
   def fare
