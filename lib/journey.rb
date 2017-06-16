@@ -1,23 +1,23 @@
 class Journey
-  attr_reader :entry_station, :journeys, :journey
+  attr_reader :entry_station, :journeys, :hash
 
   def initialize(entry_station = nil)
     @entry_station = entry_station
     @journeys = []
-    @journey = {}
+    @hash = {}
   end
 
   def start_journey(entry_station)
-    @journey.clear
-    @journey[:entry_station] = entry_station.name
-    @journeys << @journey
+    @hash.clear
+    @hash[:entry_station] = entry_station
+    @journeys << @hash
   end
 
   def finish_journey(exit_station)
-    @journey[:exit_station] = exit_station.name
+    @hash[:exit_station] = exit_station
   end
 
   def fare
-    (@journey[:entry_station] == nil || @journey[:exit_station] == nil) ? 6 : Oystercard::MIN_FARE
+    (@hash[:entry_station] == nil || @hash[:exit_station] == nil) ? 6 : Oystercard::MIN_FARE
   end
 end
